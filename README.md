@@ -1,0 +1,3 @@
+Basic app
+
+react + django
