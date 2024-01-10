@@ -1,3 +1,1 @@
-Basic app
-
-react + django
+A simple app that upload images to server.

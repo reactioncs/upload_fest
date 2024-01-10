@@ -1,10 +1,10 @@
-import Names from "./Names";
-import "./app.css";
+import Upload from "./Upload";
+import "./app.scss";
 
 function App() {
     return (
-        <div>
-            <Names />
+        <div className="app">
+            <Upload />
         </div>
     );
 }
