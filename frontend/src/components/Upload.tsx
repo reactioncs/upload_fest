@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./upload.scss"
 import ImageSection from "./ImageSection";
+import "./upload.scss"
 
 interface SavedImage {
     id: string;
@@ -95,6 +95,27 @@ function Upload() {
             throw Error(`${response.status} ${response.statusText}`);
     }
 
+    async function deleteImages(images: SavedImage[]) {
+        try {
+            if (images.length === 0)
+                throw new Error("No image to clear.");
+            await Promise.all(images.map(deleteSingleImage));
+            await loadSavedImage();
+            setServerMessage("");
+        } catch (error) {
+            if (error instanceof Error)
+                setServerMessage(error.message);
+        }
+    }
+
+    async function deleteSingleImage(image: SavedImage) {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/delete/${image.id}`, {
+            method: "DELETE",
+        });
+        if (response.status !== 200)
+            throw Error(`${response.status} ${response.statusText}`);
+    }
+
     return (
         <div className="upload">
             <div className="header">
@@ -129,13 +150,13 @@ function Upload() {
                 <div className="header">
                     <h2>Images on the server</h2>
                     <div className="buttons">
-                        <button type="submit" onClick={_ => { }}>Clear</button>
+                        <button type="submit" onClick={() => deleteImages(savedImages)}>Clear</button>
                         <button type="submit" onClick={() => loadSavedImage()}>Refresh</button>
                     </div>
                 </div>
                 <div className="saved-div">
                     {savedImages.map(image =>
-                        <ImageSection key={image.id} url={image.url} onClose={() => { }} />
+                        <ImageSection key={image.id} url={image.url} onClose={() => deleteImages([image])} />
                     )}
                 </div>
             </div>
