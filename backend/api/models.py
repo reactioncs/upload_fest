@@ -1,6 +1,15 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
+from django.core.exceptions import ValidationError
 import uuid
 import os
+
+ext_validator = FileExtensionValidator(["png", "jpg", "webp"])
+
+
+def size_validator(file):
+    if file.size > 1 * 1024 * 1024:
+        raise ValidationError("Size exceeds 1M.")
 
 
 def save_file(instance, filename):
@@ -11,7 +20,7 @@ def save_file(instance, filename):
 class ImageModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=64)
-    file = models.FileField(upload_to=save_file)
+    file = models.FileField(upload_to=save_file, validators=[size_validator, ext_validator])
 
     def save(self, *args, **kwargs):
         return super().save(*args, **kwargs)

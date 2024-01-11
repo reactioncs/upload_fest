@@ -68,17 +68,19 @@ function Upload() {
     }
 
     async function uploadImages() {
-        try {
-            if (queuedImages.length === 0)
-                throw new Error("No image can be uploaded.");
-            await Promise.all(queuedImages.map(uploadSingleImage));
-            await loadSavedImage();
-            setQueuedImages([]);
+        if (queuedImages.length === 0)
+            return;
+
+        const settledResult = await Promise.allSettled(queuedImages.map(uploadSingleImage));
+
+        await loadSavedImage();
+        setQueuedImages([]);
+
+        const failedCount = settledResult.filter(r => r.status === "rejected").length;
+        if (failedCount === 0)
             setServerMessage("");
-        } catch (error) {
-            if (error instanceof Error)
-                setServerMessage(error.message);
-        }
+        else
+            setServerMessage(`${failedCount} uploads failed.`);
     }
 
     async function uploadSingleImage(image: File) {
@@ -96,16 +98,13 @@ function Upload() {
     }
 
     async function deleteImages(images: SavedImage[]) {
-        try {
-            if (images.length === 0)
-                throw new Error("No image to clear.");
-            await Promise.all(images.map(deleteSingleImage));
-            await loadSavedImage();
-            setServerMessage("");
-        } catch (error) {
-            if (error instanceof Error)
-                setServerMessage(error.message);
-        }
+        if (images.length === 0)
+            return;
+
+        await Promise.allSettled(images.map(deleteSingleImage));
+        
+        await loadSavedImage();
+        setServerMessage("");
     }
 
     async function deleteSingleImage(image: SavedImage) {
