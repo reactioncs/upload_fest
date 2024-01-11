@@ -126,7 +126,6 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     os.path.join(os.path.dirname(BASE_DIR), "frontend/dist/static"),
-    os.path.join(BASE_DIR, "media"),
 ]
 
 # Default primary key field type
