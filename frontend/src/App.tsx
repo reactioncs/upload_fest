@@ -1,12 +1,16 @@
-import Upload from "./Upload";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Upload from "./components/Upload";
 import "./app.scss";
 
 function App() {
-    return (
-        <div className="app">
-            <Upload />
-        </div>
-    );
+    const router = createBrowserRouter([
+        {
+            path: "",
+            element: <Upload />,
+        },
+    ]);
+
+    return <RouterProvider router={router} />;
 }
 
 export default App;
