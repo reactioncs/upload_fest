@@ -149,7 +149,7 @@ function Upload() {
                 <div className="header">
                     <h2>Images on the server</h2>
                     <div className="buttons">
-                        <button type="submit" onClick={() => deleteImages(savedImages)}>Clear</button>
+                        <button type="submit" onClick={() => deleteImages(savedImages)}>Delete All</button>
                         <button type="submit" onClick={() => loadSavedImage()}>Refresh</button>
                     </div>
                 </div>
