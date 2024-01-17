@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{% static 'vite.svg' %}" />
+    <title>Summary</title>
+</head>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+    p {
+        font-size: 16px;
+        margin: 5px;
+    }
+    span {
+        font-weight: 600;
+    }
+</style>
+<body>
+    <h2>Total images uploaded: {{ images.count }}</h2>
+
+    {% if images.count != 0 %}
+    <table>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>created</th>
+            <th>size</th>
+        </tr>
+        {% for image in images %}
+        <tr>
+            <td>{{ image.id }}</td>
+            <td>{{ image.title }}</td>
+            <td>{{ image.created }}</td>
+            <td>{{ image.file.size }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No image uploaded yet.</p>
+    {% endif %}
+
+    <h2>Request information</h2>
+
+    <p>REMOTE_ADDR: <span>{{ meta.REMOTE_ADDR }}</span></p>
+    <p>REMOTE_HOST: <span>{{ meta.REMOTE_HOST }}</span></p>
+    <p>SERVER_NAME: <span>{{ meta.SERVER_NAME  }}</span></p>
+    <p>SERVER_PORT: <span>{{ meta.SERVER_PORT  }}</span></p>
+    <p>HTTP_HOST: <span>{{ meta.HTTP_HOST  }}</span></p>
+    <p>HTTP_USER_AGENT: <span>{{ meta.HTTP_USER_AGENT }}</span></p>
+</body>
+</html>

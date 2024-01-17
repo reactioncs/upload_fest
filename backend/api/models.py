@@ -21,6 +21,7 @@ class ImageModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=64)
     file = models.FileField(upload_to=save_file, validators=[size_validator, ext_validator])
+    created = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         return super().save(*args, **kwargs)

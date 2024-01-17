@@ -181,3 +181,4 @@ migrations/
 package-lock.json
 
 backend/media/
+backend/staticfiles/
