@@ -36,8 +36,8 @@ python manage.py makemigrations api
 python manage.py migrate
 ```
 
-### Before run server
+### Gunicorn startup command
 
 ```shell
-python manage.py runserver localhost:8000
+gunicorn backend.wsgi -b 127.0.0.1:8001
 ```
