@@ -141,8 +141,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = "media/"
 MEDIA_ROOT = config.get("MEDIA_ROOT", BASE_DIR / "media")
 
+ADMIN_URL = config.get("ADMIN_URL", "admin/")
+
 if not DEBUG:
     REST_FRAMEWORK = {"DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",)}
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:5173"]
+    AUTH_PASSWORD_VALIDATORS = []

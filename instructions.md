@@ -27,6 +27,7 @@ python manage.py runserver 127.0.0.1:8000
 - DJANGO_DEBUG
 - STATIC_ROOT
 - MEDIA_ROOT
+- ADMIN_URL
 
 ### Before run server
 
