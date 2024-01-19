@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config.get("SECRET_KEY", "django-insecure--abc123")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = config.get("DJANGO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = ["*"]
 
@@ -127,7 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = config.get("STATIC_ROOT", BASE_DIR / "staticfiles") 
+STATIC_ROOT = config.get("STATIC_ROOT", BASE_DIR / "staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(os.path.dirname(BASE_DIR), "frontend/dist/static"),
@@ -138,10 +138,11 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = config.get("MEDIA_ROOT", BASE_DIR / 'media')
+MEDIA_URL = "media/"
+MEDIA_ROOT = config.get("MEDIA_ROOT", BASE_DIR / "media")
+
+if not DEBUG:
+    REST_FRAMEWORK = {"DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",)}
 
 if DEBUG:
-    CORS_ALLOWED_ORIGINS = [
-        "http://127.0.0.1:5173",
-    ]
+    CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:5173"]
