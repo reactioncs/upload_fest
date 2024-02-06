@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 urlpatterns = [
-    path(settings.ADMIN_URL, admin.site.urls),
+    path("admin/", admin.site.urls),
     path("api/", include("api.urls")),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/swagger/', SpectacularSwaggerView.as_view(url_name="schema")),

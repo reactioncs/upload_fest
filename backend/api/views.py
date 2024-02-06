@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
@@ -7,14 +8,15 @@ from drf_spectacular.utils import extend_schema
 from .serializers import *
 from .models import *
 
-
-class ImageListApi(generics.ListAPIView):
+@extend_schema(responses=ImageModelSerializer)
+class ImageListApi(APIView):
     """
     Get all saved images.
     """
 
-    queryset = ImageModel.objects.all()
-    serializer_class = ImageModelSerializer
+    def get(self, request):
+        serializer = ImageModelSerializer(ImageModel.objects.all(), many=True)
+        return Response(serializer.data)
 
 
 # The FileField and ImageField classes are only suitable for use with MultiPartParser or FileUploadParser.

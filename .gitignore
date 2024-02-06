@@ -182,3 +182,5 @@ package-lock.json
 
 backend/media/
 backend/staticfiles/
+
+schema.yml

@@ -33,7 +33,6 @@ python manage.py spectacular --color --file schema.yml
 - DJANGO_DEBUG
 - STATIC_ROOT
 - MEDIA_ROOT
-- ADMIN_URL
 
 ### Before run server
 
