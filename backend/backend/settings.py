@@ -30,6 +30,7 @@ SECRET_KEY = config.get("SECRET_KEY", "django-insecure--abc123")
 DEBUG = config.get("DJANGO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = ["*"]
+# CSRF_TRUSTED_ORIGINS = ["http://192.168.0.1"]
 
 
 # Application definition

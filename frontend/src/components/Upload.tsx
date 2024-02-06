@@ -141,7 +141,7 @@ function Upload() {
                 </div>
                 <div className="queued-div">
                     {queuedImages.map((image, index) =>
-                        <ImageSection key={index} file={URL.createObjectURL(image)} onClose={() => deleteQueuedImages(index)} />
+                        <ImageSection key={index} url={URL.createObjectURL(image)} onClose={() => deleteQueuedImages(index)} />
                     )}
                 </div>
             </div>
@@ -156,7 +156,7 @@ function Upload() {
                 </div>
                 <div className="saved-div">
                     {savedImages.map(image =>
-                        <ImageSection key={image.id} file={image.file} onClose={() => deleteImages([image])} />
+                        <ImageSection key={image.id} url={image.file} onClose={() => deleteImages([image])} />
                     )}
                 </div>
             </div>

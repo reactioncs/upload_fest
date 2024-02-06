@@ -1,11 +1,11 @@
 import "./imageSection.scss";
 
 interface ImageSectionProp {
-    file: string;
+    url: string;
     onClose: () => void;
 }
 
-function ImageSection({ file: url, onClose }: ImageSectionProp) {
+function ImageSection({ url: url, onClose }: ImageSectionProp) {
     return (
         <div className="image">
             <img src={url} />
