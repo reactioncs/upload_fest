@@ -15,7 +15,7 @@ class ImageListApi(APIView):
     """
 
     def get(self, request):
-        serializer = ImageModelSerializer(ImageModel.objects.all(), many=True)
+        serializer = ImageModelSerializer(ImageModel.objects.all().order_by('created'), many=True)
         return Response(serializer.data)
 
 
@@ -27,6 +27,7 @@ class ImageUploadApi(generics.CreateAPIView):
     Upload one image.
     """
 
+    authentication_classes = []
     serializer_class = ImageModelSerializer
 
 
@@ -35,6 +36,8 @@ class ImageDeleteApi(generics.DestroyAPIView):
     """
     Delete one image.
     """
+
+    authentication_classes = []
 
     def destroy(self, request, id):
         try:
