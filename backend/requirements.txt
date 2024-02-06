@@ -2,3 +2,5 @@ django
 djangorestframework
 django-cors-headers
 python-dotenv
+drf-spectacular
+drf-spectacular-sidecar

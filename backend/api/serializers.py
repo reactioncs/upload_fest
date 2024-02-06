@@ -3,8 +3,6 @@ from .models import *
 
 
 class ImageModelSerializer(serializers.ModelSerializer):
-    url = serializers.FileField(source="file")
-
     class Meta:
         model = ImageModel
-        fields = ["id", "title", "url", "created"]
+        fields = "__all__"

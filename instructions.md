@@ -19,6 +19,12 @@ python manage.py migrate
 python manage.py runserver 127.0.0.1:8000
 ```
 
+## drf-spectacular generate schema
+
+```shell
+python manage.py spectacular --color --file schema.yml
+```
+
 ## django deploy
 
 ### `.env` settings:

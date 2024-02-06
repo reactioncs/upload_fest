@@ -5,7 +5,7 @@ import "./upload.scss"
 interface SavedImage {
     id: string;
     title: string;
-    url: string;
+    file: string;
     created: string;
 }
 
@@ -23,7 +23,7 @@ function Upload() {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/images/`);
 
             const images: SavedImage[] = await response.json();
-            images.forEach(image => image.url = `${import.meta.env.VITE_API_URL}${image.url}`);
+            images.forEach(image => image.file = `${import.meta.env.VITE_API_URL}${image.file}`);
 
             setSavedImages(images);
 
@@ -141,7 +141,7 @@ function Upload() {
                 </div>
                 <div className="queued-div">
                     {queuedImages.map((image, index) =>
-                        <ImageSection key={index} url={URL.createObjectURL(image)} onClose={() => deleteQueuedImages(index)} />
+                        <ImageSection key={index} file={URL.createObjectURL(image)} onClose={() => deleteQueuedImages(index)} />
                     )}
                 </div>
             </div>
@@ -156,7 +156,7 @@ function Upload() {
                 </div>
                 <div className="saved-div">
                     {savedImages.map(image =>
-                        <ImageSection key={image.id} url={image.url} onClose={() => deleteImages([image])} />
+                        <ImageSection key={image.id} file={image.file} onClose={() => deleteImages([image])} />
                     )}
                 </div>
             </div>
