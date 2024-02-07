@@ -8,8 +8,8 @@ ext_validator = FileExtensionValidator(["png", "jpg", "webp"])
 
 
 def size_validator(file):
-    if file.size > 1 * 1024 * 1024:
-        raise ValidationError("Size exceeds 1M.")
+    if file.size > 10 * 1024 * 1024:
+        raise ValidationError("Size exceeds 10M.")
 
 
 def save_file(instance, filename):

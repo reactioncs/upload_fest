@@ -94,7 +94,7 @@ function Upload() {
             body: formData,
         });
 
-        if (response.status !== 200)
+        if (response.status !== 201)
             throw Error(`${response.status} ${response.statusText}`);
     }
 
