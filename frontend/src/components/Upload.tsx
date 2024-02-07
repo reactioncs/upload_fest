@@ -112,7 +112,7 @@ function Upload() {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/delete/${image.id}`, {
             method: "DELETE",
         });
-        if (response.status !== 200)
+        if (response.status !== 204)
             throw Error(`${response.status} ${response.statusText}`);
     }
 
