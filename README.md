@@ -33,7 +33,7 @@ So Nginx is required to handle static files and media files, also django should 
 - STATIC_ROOT
 - MEDIA_ROOT
 
-### Nginx setting example
+### Nginx config example
 
 ```nginx
 server {
@@ -94,7 +94,7 @@ python manage.py spectacular --color --file schema.yml
 If you want to use django's admin pannel properly, configure CSRF is needed.
 
 ```python
-CSRF_TRUSTED_ORIGINS = ["https://your doamin"]
+CSRF_TRUSTED_ORIGINS = ["https://example.com"]
 ```
 
 ### Before run the server
